@@ -1,6 +1,8 @@
 # 🎭 Mood Mirror - Mental Health Companion
 
 > Your daily mood tracker that analyzes your online activity and provides gentle mental health insights.
+>
+> > **⚠️ IMPORTANT DISCLAIMER:** Mood Mirror is a self-awareness tool, NOT a medical device or mental health treatment. It does NOT provide medical advice, diagnosis, or treatment. If you're experiencing mental health concerns, please consult a licensed healthcare professional. For crisis support: 🇮🇳 India: AASRA (91-22-27546669) | 🇺🇸 USA: 988 | 🌍 International: https://findahelpline.com
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://github.com/humblemodi/mood-mirror)
