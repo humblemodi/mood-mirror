@@ -152,7 +152,7 @@ function getActionables(moodScore) {
         // CRITICAL (<10): Show TeleMANAS prompt (one-time, with accept/reject)
         actionables.push({ 
             icon: '🌈', 
-            text: 'Your wellbeing matters. TeleMANAS can provide 24/7 support',
+            text: 'We understand you're going through a difficult time. You don't have to face this alone - professional support is available 24/7 and taking that step shows real strength',
             type: 'critical-prompt'
         });
 
