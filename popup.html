@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Mirror</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🪞 Mood Mirror</h1>
+            <p class="tagline">Your mental health companion</p>
+        </div>
+        
+        <div class="mood-display">
+            <div class="mood-score">
+                <span id="moodValue">50</span>
+            </div>
+            <div class="mood-label" id="moodLabel">Neutral</div>
+        </div>
+        
+        <div class="mood-bar-container">
+            <div class="mood-bar" id="moodBar"></div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-label">Today's Sessions</span>
+                <span class="stat-value" id="sessionsToday">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Pages Analyzed</span>
+                <span class="stat-value" id="pagesAnalyzed">0</span>
+            </div>
+        </div>
+        
+        <div class="insights" id="insights">
+            <p>Start browsing to track your mood...</p>
+        </div>
+        
+        <div class="actions">
+            <button id="viewReport" class="btn">View Daily Report</button>
+            <button id="resetData" class="btn btn-secondary">Reset Today</button>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
