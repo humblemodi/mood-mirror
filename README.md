@@ -169,7 +169,7 @@ Mood Mirror is for **self-awareness and reflection only**. It is **NOT**:
 - ❌ Replacement for mental health care
 
 If you're struggling, please seek professional help:
-- 🇮🇳 India: AASRA - 91-22-27546669
+- 🇮🇳 India: TeleMANAS - 14416 or 1800-891-4
 - 🇺🇸 USA: 988 Suicide & Crisis Lifeline
 - 🌍 International: https://findahelpline.com
 
