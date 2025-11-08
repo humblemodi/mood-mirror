@@ -77,4 +77,26 @@
             subtree: true
         });
     }
+
+        // ===== v1.1: Listen for manual analysis requests from background =====
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        if (request.type === 'ANALYZE_NOW') {
+            try {
+                const pageText = extractPageText();
+                
+                if (!pageText || pageText.length < 50) {
+                    sendResponse({ score: 50, error: 'Not enough text' });
+                    return;
+                }
+                
+                const analysis = SentimentAnalyzer.analyzePage(pageText);
+                sendResponse({ score: analysis.score });
+                
+            } catch (error) {
+                console.error('Mood Mirror: Manual analysis error:', error);
+                sendResponse({ score: 50, error: error.message });
+            }
+        }
+        return true; // Keep channel open for async response
+    });
 })();
