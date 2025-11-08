@@ -129,8 +129,8 @@ Gentle, non-judgmental insights based on your browsing behavior.
 - **65-79** 😊 Good - Keep up the good vibes!
 - **50-64** 🙂 Neutral - Balanced and steady
 - **35-49** 😕 Low - Take a break if needed
-- **0-34** 😔 Stressed - Be kind to yourself today
-
+- **10-34** 🟠 Concerning - Reach out for support
+- **<10** 🔴 Critical - Crisis helplines available (TeleMANAS: 14416)
 ---
 
 ## 🤝 Contributing
