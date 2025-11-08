@@ -144,11 +144,20 @@ function getActionables(moodScore) {
         actionables.push({ icon: '😂', text: 'Watch something funny on YouTube' });
         actionables.push({ icon: '☕', text: 'Make yourself a warm drink and relax' });
         actionables.push({ icon: '📞', text: 'Call a friend or family member' });
+            } else if (moodScore >= 10) {
+        actionables.push({ icon: '🤲', text: 'Take a deep breath. You\'re not alone' });
+        actionables.push({ icon: '🫂', text: 'Reach out to someone you trust right now' });
+        actionables.push({ icon: '📞', text: 'Consider calling a helpline if you need support' });
     } else {
-        actionables.push({ icon: '🤝', text: 'Please reach out - call a friend or family' });
-        actionables.push({ icon: '🌈', text: 'TeleMANAS (India): 14416 or 1800-891-4416' });
-        actionables.push({ icon: '❤️', text: '988 (USA): Free 24/7 support available' });
-        actionables.push({ icon: '💚', text: 'You matter. Help is available anytime.' });
+        // CRITICAL (<10): Show TeleMANAS prompt (one-time, with accept/reject)
+        actionables.push({ 
+            icon: '🌈', 
+            text: 'Your wellbeing matters. TeleMANAS can provide 24/7 support',
+            type: 'critical-prompt'
+        });
+
+
+
     }
     
     return actionables;
@@ -177,7 +186,33 @@ function displayActionables(moodScore) {
     actionables.forEach(item => {
         const div = document.createElement('div');
         div.className = 'actionable-item';
-        div.innerHTML = `
+        
+        // Handle critical prompt with accept/reject buttons
+        if (item.type === 'critical-prompt') {
+            div.innerHTML = `
+                <span class="actionable-icon">${item.icon}</span>
+                <div style="flex: 1;">
+                    <span>${item.text}</span>
+                    <div style="margin-top: 10px; display: flex; gap: 8px;">
+                                                <button class="btn-accept" data-action="accept">🌈 Show Helplines</button>
+                        <button class="btn-reject" data-action="reject">I'm okay</button>
+                    </div>
+                </div>
+            `;
+            
+            // Handle button clicks
+            div.querySelector('.btn-accept').addEventListener('click', () => {
+                                div.innerHTML = '<span class="actionable-icon">💚</span><div><strong>24/7 Helplines:</strong><br>🇮🇳 TeleMANAS (India): 14416 or 1800-891-4416<br>🇺🇸 988 (USA): Free crisis support<br><small>You\'re not alone. Help is available.</small></div>';
+            });
+            div.querySelector('.btn-reject').addEventListener('click', () => {
+                div.innerHTML = '<span class="actionable-icon">✨</span><span>Glad to hear! Take care of yourself.</span>';
+            });
+        } else {
+            div.innerHTML = `
+                <span class="actionable-icon">${item.icon}</span>
+                <span>${item.text}</span>
+            `;
+        }
             <span class="actionable-icon">${item.icon}</span>
             <span>${item.text}</span>
         `;
