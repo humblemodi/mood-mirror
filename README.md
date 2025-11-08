@@ -146,12 +146,13 @@ Contributions welcome! Feel free to:
 
 ## 📝 Roadmap
 
-### v1.1 (Next)
-- [ ] Typing speed analysis
-- [ ] Scroll pattern detection
-- [ ] Weekly mood reports
-- [ ] Export data as CSV
+### v1.1 (Completed) ✅
 
+- ✅ Auto-refresh at customizable intervals (30m, 1h, 3h, 5h, 12h, 24h)
+- ✅ Browser notifications for mood drops
+- ✅ 6-category mood-based actionables system
+- ✅ Critical prompt with India (TeleMANAS) & USA (988) helplines
+- ✅ Settings panel for interval customization
 ### v1.2 (Future)
 - [ ] Custom triggers
 - [ ] Reminder notifications
