@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Mood Mirror - Mental Health Companion",
-  "version": "1.0.0",
+  "version": "1.0.0"1.1.0",
   "description": "Your daily mood tracker that analyzes your online activity and provides gentle mental health insights with fun GIF reactions",
   "icons": {
     "16": "icons/icon16.png",
@@ -19,7 +19,9 @@
   "permissions": [
     "storage",
     "activeTab",
-    "scripting"
+    "scripting,
+        "notifications",
+    "alarms"
   ],
   "host_permissions": [
     "<all_urls>"
