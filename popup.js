@@ -39,11 +39,12 @@ async function updateDisplay() {
 }
 
 function getMoodLabel(score) {
-    if (score >= 70) return 'Positive';
-    if (score >= 55) return 'Good';
-    if (score >= 45) return 'Neutral';
-    if (score >= 30) return 'Low';
-    return 'Concerning';
+    if (score >= 80) return 'Positive';
+    if (score >= 65) return 'Good';
+    if (score >= 50) return 'Neutral';
+    if (score >= 35) return 'Low';
+        if (score >= 10) return 'Concerning';
+    return 'Critical';
 }
 
 function updateInsights(moodScore, lastAnalysis) {
@@ -56,16 +57,18 @@ function updateInsights(moodScore, lastAnalysis) {
     
     let message = '';
     
-    if (moodScore >= 70) {
+    if (moodScore >= 80) {
         message = '🌟 You\'re browsing positive content! Keep it up.';
-    } else if (moodScore >= 55) {
+    } else if (moodScore >= 65) {
         message = '😊 Your mood looks good. Balanced content consumption.';
-    } else if (moodScore >= 45) {
+    } else if (moodScore >= 50) {
         message = '😐 Neutral mood detected. Consider some uplifting content.';
-    } else if (moodScore >= 30) {
+    } else if (moodScore >= 35) {
         message = '😔 Your mood seems low. Maybe take a break or watch something cheerful?';
+            } else if (moodScore >= 10) {
+                message = '😟 Your mood is concerning. Please reach out to someone you trust.';
     } else {
-        message = '⚠️ Mood is concerning. Please take a break and consider talking to someone.';
+        message = '⚠️ Mood is critical. Please take a break and consider talking to someone.';
     }
     
     insightsDiv.innerHTML = `<p>${message}</p>`;
@@ -93,19 +96,24 @@ function generateReport(data) {
     report += `Sessions Today: ${sessions}\n`;
     report += `Pages Analyzed: ${pages}\n\n`;
     
-    if (moodScore >= 70) {
+    if (moodScore >= 80) {
         report += '✅ Your browsing patterns suggest a positive mental state!\n';
         report += 'Keep engaging with content that makes you happy.';
-    } else if (moodScore >= 50) {
+    } else if (moodScore >= 65) {
         report += '✅ You\'re doing well! Balanced content consumption.\n';
         report += 'Continue maintaining this healthy browsing pattern.';
-    } else if (moodScore >= 30) {
+            } else if (moodScore >= 50) {
+                report += '✅ Neutral mood. Maintain balance.\n';
+        report += 'Keep up your mindful browsing habits.';
+    } else if (moodScore >= 35) {
         report += '⚠️ Your mood seems lower than usual.\n';
         report += 'Consider: Taking breaks, watching uplifting content, or talking to someone.';
+            } else if (moodScore >= 10) {
+        report += '⚠️ Concerning mood patterns detected.\n';
+        report += 'Please prioritize self-care and reach out to supportive friends or family.';
     } else {
-        report += '🚨 Your browsing suggests you might be struggling.\n';
-        report += 'Please consider reaching out to a friend, family member, or mental health professional.';
-    }
+        report += '🚨 Your browsing suggests you might be in a critical state.\n';
+        report += 'URGENT: Please reach out to crisis helplines immediately. TeleMANAS: 14416 | 988 (USA).';    }
     
     return report;
 }
