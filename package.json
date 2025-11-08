@@ -1,0 +1,42 @@
+{
+  "name": "mood-mirror",
+  "version": "1.1.0",
+  "description": "A mental wellness Chrome extension for daily mood tracking",
+  "type": "module",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:verbose": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/humblemodi/mood-mirror.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "mental-health",
+    "mood-tracking",
+    "wellness",
+    "mental-wellness"
+  ],
+  "author": "Humble Modi",
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "*.js",
+      "!node_modules/**",
+      "!coverage/**",
+      "!jest.config.js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  }
+}
