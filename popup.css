@@ -140,3 +140,114 @@ body {
 .btn-secondary:hover {
     background: #2a2a2a;
 }
+
+/* ===== v1.1 Styles: Actionables & Settings ===== */
+
+.actionables {
+    margin-top: 20px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.actionables h3 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.actionables.highlighted {
+    background: #fff3cd;
+    border-color: #ffc107;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+#actionablesList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actionable-item {
+    padding: 12px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.actionable-item:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.actionable-icon {
+    font-size: 20px;
+    min-width: 24px;
+}
+
+.settings {
+    margin-top: 20px;
+    padding: 16px;
+    background: #f0f4f8;
+    border-radius: 8px;
+    border: 1px solid #d0d7de;
+}
+
+.settings h3 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.setting-item {
+    margin-bottom: 12px;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.select-interval {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.select-interval:hover {
+    border-color: #3b82f6;
+}
+
+.select-interval:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.setting-note {
+    margin: 8px 0 0 0;
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+}
+
+/* ===== END v1.1 Styles ===== */
