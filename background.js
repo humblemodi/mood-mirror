@@ -134,5 +134,122 @@ function scheduleReset() {
     }, timeUntilMidnight);
 }
 
+
+// ===== v1.1 FEATURES: Auto-refresh & Notifications =====
+
+// Get user's refresh interval preference (default 30 minutes)
+async function getRefreshInterval() {
+  const result = await chrome.storage.local.get('refreshInterval');
+  return result.refreshInterval || 30; // Default 30 minutes
+}
+
+// Setup alarm for auto mood check
+async function setupAutoRefresh() {
+  const interval = await getRefreshInterval();
+  
+  // Clear any existing alarm
+  chrome.alarms.clear('moodCheck');
+  
+  // Create new alarm
+  chrome.alarms.create('moodCheck', {
+    periodInMinutes: interval
+  });
+  
+  console.log(`Mood Mirror: Auto-refresh set to ${interval} minutes`);
+}
+
+// Listen for alarm triggers
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === 'moodCheck') {
+    performScheduledMoodCheck();
+  }
+});
+
+// Perform scheduled mood check
+async function performScheduledMoodCheck() {
+  try {
+    // Get current active tab
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    
+    if (!tab) return;
+    
+    // Send message to content script to analyze current page
+    chrome.tabs.sendMessage(tab.id, { type: 'ANALYZE_NOW' }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.log('No content script on this page');
+        return;
+      }
+      
+      if (response && response.score !== undefined) {
+        checkAndNotify(response.score);
+      }
+    });
+  } catch (error) {
+    console.error('Error in scheduled mood check:', error);
+  }
+}
+
+// Check mood and send notification if concerning
+async function checkAndNotify(moodScore) {
+  const result = await chrome.storage.local.get(['lastNotificationScore', 'moodScore']);
+  const previousScore = result.lastNotificationScore || 50;
+  const currentScore = result.moodScore || 50;
+  
+  // Notify if mood drops below 50 or significant drop detected
+  if (moodScore < 50 && previousScore >= 50) {
+    sendMoodNotification('low', moodScore);
+    await chrome.storage.local.set({ lastNotificationScore: moodScore });
+  } else if (moodScore < 35 && previousScore >= 35) {
+    sendMoodNotification('concerning', moodScore);
+    await chrome.storage.local.set({ lastNotificationScore: moodScore });
+  } else if (previousScore - moodScore >= 15) {
+    sendMoodNotification('drop', moodScore);
+    await chrome.storage.local.set({ lastNotificationScore: moodScore });
+  }
+}
+
+// Send mood notification
+function sendMoodNotification(type, score) {
+  let title, message, iconUrl;
+  
+  if (type === 'concerning') {
+    title = '😢 Mood Alert';
+    message = `Your mood score is ${score}. Consider taking a break or reaching out to someone.`;
+    iconUrl = 'icons/icon48.png';
+  } else if (type === 'low') {
+    title = '😔 Mood Check-in';
+    message = `Your mood has dropped to ${score}. Time for some self-care?`;
+    iconUrl = 'icons/icon48.png';
+  } else if (type === 'drop') {
+    title = '🔔 Mood Change Detected';
+    message = `Significant mood change detected. Current score: ${score}`;
+    iconUrl = 'icons/icon48.png';
+  }
+  
+  chrome.notifications.create({
+    type: 'basic',
+    iconUrl: iconUrl,
+    title: title,
+    message: message,
+    priority: 2
+  });
+}
+
+// Listen for interval changes from settings
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  if (namespace === 'local' && changes.refreshInterval) {
+    setupAutoRefresh();
+  }
+});
+
+// Initialize auto-refresh on install/startup
+chrome.runtime.onStartup.addListener(() => {
+  setupAutoRefresh();
+});
+
+setupAutoRefresh();
+
+// ===== END v1.1 FEATURES =====
+
 // Start reset scheduler
 scheduleReset();
