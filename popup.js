@@ -1,3 +1,7 @@
+// Import constants
+import { MOOD_THRESHOLDS, MOOD_CATEGORIES, HELPLINES } from './constants.js';
+import { MoodMirrorError } from './errorHandler.js';
+
 // Initialize popup with stored data
 document.addEventListener('DOMContentLoaded', async () => {
     await updateDisplay();
